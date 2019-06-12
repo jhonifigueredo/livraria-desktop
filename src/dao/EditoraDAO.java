@@ -1,6 +1,6 @@
 package dao;
 
-import model.Autor;
+import model.Editora;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,22 +9,22 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AutorDAO {
+public class EditoraDAO {
 
     private Connection conexao;
 
-    public AutorDAO(){
+    public EditoraDAO(){
         conexao = new ConnectionFactory().getConnection();
     }
 
-    public void inserir(Autor autor){
-        String sql = "insert into autores (nome, email) values (?, ?)";
+    public void inserir(Editora editora){
+        String sql = "insert into editoras (nome, site) values (?, ?)";
 
         try{
             // Preparar a conexão
             PreparedStatement stmt = conexao.prepareStatement(sql);
-            stmt.setString(1, autor.getNome());
-            stmt.setString(2, autor.getEmail());
+            stmt.setString(1, editora.getNome());
+            stmt.setString(2, editora.getSite());
 
             //Executar o comando
             stmt.execute();
@@ -37,9 +37,9 @@ public class AutorDAO {
         }
     }
 
-    public List<Autor> listarTodos(){
-        String sql = "select * from autores";
-        List<Autor> autores = new ArrayList<>();
+    public List<Editora> listarTodos(){
+        String sql = "select * from editoras";
+        List<Editora> editoras = new ArrayList<>();
 
         try {
             // Preparar a conexão
@@ -50,12 +50,12 @@ public class AutorDAO {
 
             // Percorrer os resultados
             while (resutados.next()){
-                Autor autor = new Autor();
-                autor.setId(resutados.getInt("id"));
-                autor.setNome(resutados.getString("nome"));
-                autor.setEmail(resutados.getString("email"));
+                Editora editora = new Editora();
+                editora.setId(resutados.getInt("id"));
+                editora.setNome(resutados.getString("nome"));
+                editora.setSite(resutados.getString("site"));
 
-                autores.add(autor);
+                editoras.add(editora);
             }
 
             // Fechar conexão
@@ -65,18 +65,18 @@ public class AutorDAO {
             throw new RuntimeException(e);
         }
 
-        return autores;
+        return editoras;
     }
 
-    public void alterar(Autor autor){
-        String sql = "update autores set nome = ?, email = ? where id = ?";
+    public void alterar(Editora editora){
+        String sql = "update editoras set nome = ?, site = ? where id = ?";
 
         try {
             // Prepara a conexão
             PreparedStatement stmt = conexao.prepareStatement(sql);
-            stmt.setString(1, autor.getNome());
-            stmt.setString(2, autor.getEmail());
-            stmt.setInt(3, autor.getId());
+            stmt.setString(1, editora.getNome());
+            stmt.setString(2, editora.getSite());
+            stmt.setInt(3, editora.getId());
 
             // Executa
             stmt.execute();
@@ -89,15 +89,15 @@ public class AutorDAO {
         }
     }
 
-    public void deletar(Autor autor){
-        String sql = "delete autores set nome = ?, email = ? where id = ?";
+    public void deletar(Editora editora){
+        String sql = "delete editoras set nome = ?, site = ? where id = ?";
 
         try {
             // Prepara a conexão
             PreparedStatement stmt = conexao.prepareStatement(sql);
-            stmt.setString(1, autor.getNome());
-            stmt.setString(2, autor.getEmail());
-            stmt.setInt(3, autor.getId());
+            stmt.setString(1, editora.getNome());
+            stmt.setString(2, editora.getSite());
+            stmt.setInt(3, editora.getId());
 
             // Executa
             stmt.execute();
@@ -110,10 +110,10 @@ public class AutorDAO {
         }
     }
 
-    public Autor listarPorId(int id){
-        String sql = "select * from autores where id = ?";
+    public Editora listarPorId(int id){
+        String sql = "select * from editoras where id = ?";
 
-        Autor autor = new Autor();
+        Editora editora = new Editora();
 
         try {
             //Prepara a conexão
@@ -125,10 +125,10 @@ public class AutorDAO {
 
             resultado.next();
 
-            //Populando o objeto autor
-            autor.setId(resultado.getInt("id"));
-            autor.setNome(resultado.getString("nome"));
-            autor.setEmail(resultado.getString("email"));
+            //Populando o objeto
+            editora.setId(resultado.getInt("id"));
+            editora.setNome(resultado.getString("nome"));
+            editora.setSite(resultado.getString("site"));
 
             //Fechar conexão
             conexao.close();
@@ -137,7 +137,7 @@ public class AutorDAO {
             throw new RuntimeException(e);
         }
 
-        return autor;
+        return editora;
     }
 
     // Fazer interface com comandos

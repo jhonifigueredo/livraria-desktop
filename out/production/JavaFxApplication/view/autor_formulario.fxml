@@ -2,16 +2,18 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AutorFormularioController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.999-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AutorFormularioController">
    <children>
       <Pane prefHeight="75.0" prefWidth="600.0" style="-fx-background-color: #0000A7;">
          <children>
-            <Label layoutX="35.0" layoutY="30.0" text="Cadastro de Autores" textFill="WHITE">
+            <Label layoutX="35.0" layoutY="30.0" text="Autores" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
@@ -22,6 +24,14 @@
       <Label layoutX="40.0" layoutY="140.0" text="E-mail:" />
       <TextField fx:id="txfNome" layoutX="104.0" layoutY="94.0" />
       <TextField fx:id="txfEmail" layoutX="104.0" layoutY="135.0" />
+      <Button fx:id="btnLimpar" layoutX="104.0" layoutY="181.0" mnemonicParsing="false" text="Limpar" />
       <Button fx:id="btnSalvar" layoutX="213.0" layoutY="181.0" mnemonicParsing="false" onAction="#salvar" text="Salvar" />
-   </children>
+      <TableView fx:id="tbvListarAutores" layoutY="217.0" prefHeight="200.0" prefWidth="600.0">
+        <columns>
+          <TableColumn prefWidth="48.0" text="Id" />
+          <TableColumn prefWidth="366.0" text="Nome" />
+            <TableColumn prefWidth="185.0" text="Email" />
+        </columns>
+      </TableView>
+         </children>
 </AnchorPane>

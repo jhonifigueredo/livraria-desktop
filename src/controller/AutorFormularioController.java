@@ -4,6 +4,7 @@ import dao.AutorDAO;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import model.Autor;
 
@@ -15,6 +16,11 @@ public class AutorFormularioController {
     private TextField txfEmail;
     @FXML
     private Button btnSalvar;
+    @FXML
+    private Button btnLimpar;
+    @FXML
+    private TableView tbvListarAutores;
+
 
     public void salvar() {
         System.out.println("Nome: " + txfNome.getText());
